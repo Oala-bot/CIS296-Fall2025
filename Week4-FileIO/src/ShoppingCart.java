@@ -1,10 +1,13 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable  {
     ArrayList<Item> items;
+    String storeName;
 
     public ShoppingCart() {
        items = new ArrayList<>();
+       storeName = "test";
     }
 
     public void addItem(Item item){

@@ -4,6 +4,47 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        try {
+            // binary type files
+            DataOutputStream binaryOutputFile = new DataOutputStream(
+                    new BufferedOutputStream(
+                            new FileOutputStream("numbers.bin")));
+
+            binaryOutputFile.writeInt(5);
+            binaryOutputFile.writeInt(8);
+            binaryOutputFile.writeInt(12);
+            binaryOutputFile.writeInt(500);
+
+            binaryOutputFile.close();
+
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+
+            DataInputStream binaryInput = new DataInputStream(
+                    new BufferedInputStream(
+                            new FileInputStream("numbers.bin")));
+
+            double sum = 0;
+
+            // available tells you how many bytes are left to read
+            while (binaryInput.available() > 0) {
+                sum += binaryInput.readInt();
+            }
+
+            binaryInput.close();
+
+            System.out.println("The sum of the values in the binary are: " + sum);
+
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+
+
+
+
         Scanner keyboard=  new Scanner(System.in);
         System.out.println("Do you want to load a shopping cart? (y/n)");
         String load = keyboard.nextLine();
@@ -53,6 +94,25 @@ public class Main {
         } catch (IOException e) {
             System.out.println(e.toString());
         }
+
+        // bing ai "java write serializable class to"
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("cart.ser"))) {
+            oos.writeObject(cart);
+            System.out.println("Object has been serialized.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+// Step 4: Deserialize the object
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("cart.ser"))) {
+            ShoppingCart deserializedCart = (ShoppingCart) ois.readObject();
+            System.out.println("Object has been deserialized.");
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
 
 
