@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
     private static Stage primaryStage;
@@ -21,14 +22,20 @@ public class HelloApplication extends Application {
     }
 
     public static void switchScene(String fxmlFile, String name) throws Exception {
+        switchScene(fxmlFile, name, new ArrayList<>());
+    }
+
+
+    public static void switchScene(String fxmlFile, String name, ArrayList<Order> orders) throws Exception {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
         Scene scene = new Scene(loader.load());
         primaryStage.setScene(scene);
-        
+
         // https://stackoverflow.com/questions/14187963/passing-parameters-javafx-fxml
         // gets the controller so you can call methods
-        HelloController controller = loader.getController();
+        CoffeeShopController controller = loader.getController();
         controller.setName(name);
+        controller.setOrders(orders);
 
     }
 

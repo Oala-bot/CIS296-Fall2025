@@ -1,6 +1,8 @@
 package com.example.javafxhelloworld;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
 
     public static double COFFEE_PRICE = 3;
     public static double ESPRESSO_PRICE = 3.5;

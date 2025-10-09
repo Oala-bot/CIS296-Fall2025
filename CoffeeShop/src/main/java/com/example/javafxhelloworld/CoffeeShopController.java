@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class HelloController {
+public class CoffeeShopController {
 
     private ArrayList<Order> orders;
 
@@ -40,14 +43,22 @@ public class HelloController {
     private Label grandTotalLabel;
 
     private String name;
+    @FXML
+    private Button saveButton;
 
 
-    public HelloController() {
+    public CoffeeShopController() {
         orders = new ArrayList<>();
     }
 
     public String getName() {
         return name;
+    }
+
+
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
+        printReceipt();
     }
 
     public void setName(String name) {
@@ -78,11 +89,35 @@ public class HelloController {
     @FXML
     public void orderButtonClicked(ActionEvent actionEvent) {
         orders.add(currentOrder);
-        receiptTextArea.appendText(currentOrder.toString() + "\n");
+        printReceipt();
+    }
+
+    private void printReceipt() {
+        receiptTextArea.setText("");
         double grandTotal = 0;
         for ( Order order : orders ) {
+            receiptTextArea.appendText(order.toString() + "\n");
             grandTotal += order.getPrice();
         }
         grandTotalLabel.setText(name + "'s Grand Total $" + grandTotal);
+    }
+
+    @FXML
+    public void saveButtonClicked(ActionEvent actionEvent) {
+        // https://github.com/EricCharnesky/CIS296-Fall2025/blob/main/Week4-FileIO/src/Main.java
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(name + ".ser"))) {
+            oos.writeObject(orders);
+            System.out.println("Object has been serialized.");
+        } catch (IOException e) {
+            // bing ai "javafx pop up alert for errors"
+            // Create an alert of type INFORMATION
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Unable to save");
+            alert.setContentText(e.toString());
+
+            // Show the alert
+            alert.showAndWait();
+        }
     }
 }
