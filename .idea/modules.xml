@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CIS296-Fall2025.iml" filepath="$PROJECT_DIR$/.idea/CIS296-Fall2025.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Project1-PowerBallSimulator/Project1-PowerBallSimulator.iml" filepath="$PROJECT_DIR$/Project1-PowerBallSimulator/Project1-PowerBallSimulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week1/Week1.iml" filepath="$PROJECT_DIR$/Week1/Week1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week2/Week2.iml" filepath="$PROJECT_DIR$/Week2/Week2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week3-ClassesAndArrays/Week3-ClassesAndArrays.iml" filepath="$PROJECT_DIR$/Week3-ClassesAndArrays/Week3-ClassesAndArrays.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week4-FileIO/Week4-FileIO.iml" filepath="$PROJECT_DIR$/Week4-FileIO/Week4-FileIO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Week5-MoreOOP/Week5-MoreOOP.iml" filepath="$PROJECT_DIR$/Week5-MoreOOP/Week5-MoreOOP.iml" />
+    </modules>
+  </component>
+</project>
